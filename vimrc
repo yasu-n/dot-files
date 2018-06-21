@@ -25,15 +25,17 @@
 " zR   : Open all folds
 " zM   : Close all folds
 " }}}
-
-
+"
+" terminal {{{
+" ex) termkey: Ctrl + w
+" termkey Ctrl+w : change window (Ctrl+w is j,h,k.l)
+" termkey :      : transfer ex-mode
+" termkey :quit  : close window (Can't execute while running job)
+" termkey Ctrl+c : stop job
+" }}}
 filetype plugin indent on
 syntax enable
 
-" package {{{
-packadd! vim-go
-packadd! vim-elixir
-" }}}
 
 " settings {{{
 set fileformat=unix
@@ -60,6 +62,7 @@ set diffopt+=vertical
 set matchpairs+=<:>
 set hidden
 set imdisable
+set ignorecase
 set modeline
 set directory-=.
 set showcmd
@@ -72,6 +75,7 @@ set laststatus=2
 set cmdheight=3
 set ttyfast
 set t_Co=256
+set omnifunc=syntaxcomplete#Complete
 " }}}
 
 
@@ -99,6 +103,16 @@ augroup MyAutoCmd
     au BufRead,BufNewFile *.tt setf perl
 
     au BufNewFile *.pl 0r $HOME/.vim/skel/skel.pl|normal 5G
+
+    au FileType go packadd vim-go
+    au FileType elixir packadd vim-elixir
+    au FileType rust packadd rust.vim
+    au FileType rust packadd vim-racer
+
+    au FileType rust nmap rd <Plug>(rust-def)
+    au FileType rust nmap rs <Plug>(rust-def-split)
+    au FileType rust nmap rx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>rd <Plug>(rust-doc)
 
     au FileType help  nnoremap <buffer> q :q<cr>
     au FileType man   nnoremap <buffer> q :q<cr>
@@ -160,5 +174,10 @@ let g:airline_powerline_font = 0
 let g:airline_theme = 'powerlineish'
 " }}}
 
+" rust {{{
+"let g:racer_experimental_completer = 1
+let $RUST_SRC_PATH="~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/"
+let g:racer_cmd = "~/.cargo/bin/racer"
+" }}}
 set secure
 
