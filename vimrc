@@ -1,6 +1,5 @@
 " ~/.vimrc
 " maintainer: yasu-n<yasun.pl@gmail.com>
-" latest: May 2 2017
 "
 " text object {{{
 " d: delete
@@ -35,7 +34,6 @@
 " }}}
 filetype plugin indent on
 syntax enable
-
 
 " settings {{{
 set fileformat=unix
@@ -74,8 +72,6 @@ set nobackup
 set laststatus=2
 set cmdheight=3
 set ttyfast
-set t_Co=256
-set omnifunc=syntaxcomplete#Complete
 " }}}
 
 
@@ -88,9 +84,9 @@ hi Pmenu ctermfg=white ctermbg=darkgray
 hi PmenuSel ctermfg=white ctermbg=blue
 hi PmenuSbar ctermfg=lightgray
 hi PmenuThumb ctermfg=lightgray
-hi perlComment ctermfg=darkgray
-hi perlDATA ctermfg=cyan
-hi perlPOD ctermfg=darkgray
+"hi perlComment ctermfg=darkgray
+"hi perlDATA ctermfg=cyan
+"hi perlPOD ctermfg=darkgray
 " }}}
 
 " autocmd {{{
@@ -105,20 +101,15 @@ augroup MyAutoCmd
     au BufNewFile *.pl 0r $HOME/.vim/skel/skel.pl|normal 5G
 
     au FileType go packadd vim-go
-    au FileType elixir packadd vim-elixir
     au FileType rust packadd rust.vim
-    au FileType rust packadd vim-racer
+    "au FileType rust packadd vim-racer
+    au FileType rust packadd vim-lsp
 
-    au FileType rust nmap rd <Plug>(rust-def)
-    au FileType rust nmap rs <Plug>(rust-def-split)
-    au FileType rust nmap rx <Plug>(rust-def-vertical)
-    au FileType rust nmap <leader>rd <Plug>(rust-doc)
-
+    au FileType markdown packadd vim-gfm-syntax
+    au FileType markdown packadd vim-quickrun-markdown-gfm
     au FileType help  nnoremap <buffer> q :q<cr>
     au FileType man   nnoremap <buffer> q :q<cr>
     au FileType godoc nnoremap <buffer> q :q<cr>
-
-    au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mar*} set filetype=markdown
 
     runtime macros/matchit.vim
     
@@ -138,17 +129,40 @@ call s:set_quickrun({
 call s:set_quickrun({
             \ "perl/test": {
             \   "exec": "%c %o %s:p",
-            \   "commant": "prove",
+            \   "command": "prove",
             \   "cmdopt": "-vlr",
             \   "hook/shebang/enable": 0,
+            \ }})
+call s:set_quickrun({
+            \ "markdown": {
+            \   "outputter": "browser",
+            \ }})
+call s:set_quickrun({
+            \ "markdown/github": {
+            \   "type": "markdown/gfm",
+            \   "outputter": "browser",
             \ }})
 call s:set_quickrun({
             \ "html": {
             \   "exec": "%c %s:p",
             \   "command": "safari",
             \ }})
-nnoremap <leader>rp :QuickRun perl/text<cr>
+call s:set_quickrun({
+            \ "rust/run": {
+            \ "exec": "%c %o",
+            \ "command": "cargo",
+            \ "cmdopt": "run",
+            \ }})
+call s:set_quickrun({
+            \ "rust/test": {
+            \ "exec": "%c %o",
+            \ "command": "cargo",
+            \ "cmdopt": "test",
+            \ }})
+nnoremap <leader>rp :QuickRun perl/test<cr>
 nnoremap <leader>rm :QuickRun markdown/github<cr>
+nnoremap <leader>rg :QuickRun rust/run<cr>
+nnoremap <leader>rt :QuickRun rust/test<cr>
 " }}}
 
 " loadafterft {{{
@@ -156,6 +170,12 @@ let g:execcmd_after_ftplugin = {
             \ '_': [
             \   'setlocal fo-=t fo-=r fo-=o',
             \ ]}
+" }}}
+
+" lexima {{{
+"call lexima#add_rule({
+"      \ 'char': '=', 'input_after': ' = ',
+"      \ })
 " }}}
 
 " open-browser {{{
@@ -174,10 +194,6 @@ let g:airline_powerline_font = 0
 let g:airline_theme = 'powerlineish'
 " }}}
 
-" rust {{{
-"let g:racer_experimental_completer = 1
-let $RUST_SRC_PATH="~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/"
-let g:racer_cmd = "~/.cargo/bin/racer"
-" }}}
+
 set secure
 
