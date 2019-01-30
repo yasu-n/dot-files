@@ -39,8 +39,8 @@ syntax enable
 set fileformat=unix
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
-set encoding=utf-8
 scriptencoding utf-8
+set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 set smarttab
@@ -84,9 +84,6 @@ hi Pmenu ctermfg=white ctermbg=darkgray
 hi PmenuSel ctermfg=white ctermbg=blue
 hi PmenuSbar ctermfg=lightgray
 hi PmenuThumb ctermfg=lightgray
-"hi perlComment ctermfg=darkgray
-"hi perlDATA ctermfg=cyan
-"hi perlPOD ctermfg=darkgray
 " }}}
 
 " autocmd {{{
@@ -102,7 +99,6 @@ augroup MyAutoCmd
 
     au FileType go packadd vim-go
     au FileType rust packadd rust.vim
-    "au FileType rust packadd vim-racer
     au FileType rust packadd vim-lsp
 
     au FileType markdown packadd vim-gfm-syntax
@@ -172,11 +168,6 @@ let g:execcmd_after_ftplugin = {
             \ ]}
 " }}}
 
-" lexima {{{
-"call lexima#add_rule({
-"      \ 'char': '=', 'input_after': ' = ',
-"      \ })
-" }}}
 
 " open-browser {{{
 let g:netrw_nogx = 1
