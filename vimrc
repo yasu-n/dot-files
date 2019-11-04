@@ -1,5 +1,4 @@
 " ~/.vimrc
-" maintainer: yasu-n<yasun.pl@gmail.com>
 "
 " text object {{{
 " d: delete
@@ -36,42 +35,44 @@ filetype plugin indent on
 syntax enable
 
 " settings {{{
-set fileformat=unix
+"set fileformat=unix
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
-scriptencoding utf-8
+"scriptencoding utf-8
 set encoding=utf-8
 set termencoding=utf-8
-set fileencoding=utf-8
-set smarttab
-set ambiwidth=double
-set tabstop=2
-set shiftwidth=2
-set softtabstop=0
-set expandtab
-set shortmess+=l
+"set fileencoding=utf-8
+"set smarttab
+"set ambiwidth=double
+"set tabstop=2
+"set shiftwidth=2
+"set softtabstop=0
+"set expandtab
+"set shortmess+=l
 set incsearch
 set splitright
-set noequalalways
+"set noequalalways
 set completeopt=menu,preview
-set switchbuf=useopen
-set wildmode=list:longest
-set diffopt+=vertical
+"set switchbuf=useopen
+set wildmode=longest,full
+"set diffopt+=vertical
 set matchpairs+=<:>
 set hidden
-set imdisable
+"set imdisable
 set ignorecase
 set modeline
-set directory-=.
-set showcmd
-set showmatch
-set pumheight=15
-set previewheight=5
-set grepprg=grep\ -nH
-set nobackup
+set directory-=$HOME/.vim/swap
+"set showcmd
+"set showmatch
+"set pumheight=15
+"set previewheight=5
+"set nobackup
 set laststatus=2
 set cmdheight=3
-set ttyfast
+"set ttyfast
+"set termwinsize=15x0
+set number
+"let mapleader = "\<Space>"
 " }}}
 
 
@@ -90,22 +91,9 @@ hi PmenuThumb ctermfg=lightgray
 augroup MyAutoCmd
     autocmd!
 
-    au FileType * setlocal fo-=o fo-=r
-    au BufRead,BufNewFile *.psgi setf perl
-    au BufRead,BufNewFile *.t setf perl
-    au BufRead,BufNewFile *.tt setf perl
-
-    au BufNewFile *.pl 0r $HOME/.vim/skel/skel.pl|normal 5G
-
-    au FileType go packadd vim-go
-    au FileType rust packadd rust.vim
-    au FileType rust packadd vim-lsp
-
-    au FileType markdown packadd vim-gfm-syntax
-    au FileType markdown packadd vim-quickrun-markdown-gfm
+    au FileType * setlocal fo-=t fo-=r fo-=o
     au FileType help  nnoremap <buffer> q :q<cr>
     au FileType man   nnoremap <buffer> q :q<cr>
-    au FileType godoc nnoremap <buffer> q :q<cr>
 
     runtime macros/matchit.vim
     
@@ -113,61 +101,45 @@ augroup END
 " }}}
 
 " quickrun {{{
-let g:quickrun_config = {}
-function! s:set_quickrun(dict)
-  call extend(g:quickrun_config, a:dict)
-endfunction
-
-call s:set_quickrun({
-            \ "perl": {
-            \   "hook/time/enable": 1,
-            \ }})
-call s:set_quickrun({
-            \ "perl/test": {
-            \   "exec": "%c %o %s:p",
-            \   "command": "prove",
-            \   "cmdopt": "-vlr",
-            \   "hook/shebang/enable": 0,
-            \ }})
-call s:set_quickrun({
-            \ "markdown": {
-            \   "outputter": "browser",
-            \ }})
-call s:set_quickrun({
-            \ "markdown/github": {
-            \   "type": "markdown/gfm",
-            \   "outputter": "browser",
-            \ }})
-call s:set_quickrun({
-            \ "html": {
-            \   "exec": "%c %s:p",
-            \   "command": "safari",
-            \ }})
-call s:set_quickrun({
-            \ "rust/run": {
-            \ "exec": "%c %o",
-            \ "command": "cargo",
-            \ "cmdopt": "run",
-            \ }})
-call s:set_quickrun({
-            \ "rust/test": {
-            \ "exec": "%c %o",
-            \ "command": "cargo",
-            \ "cmdopt": "test",
-            \ }})
-nnoremap <leader>rp :QuickRun perl/test<cr>
-nnoremap <leader>rm :QuickRun markdown/github<cr>
-nnoremap <leader>rg :QuickRun rust/run<cr>
-nnoremap <leader>rt :QuickRun rust/test<cr>
+"let g:quickrun_config = {}
+"function! s:set_quickrun(dict)
+"  call extend(g:quickrun_config, a:dict)
+"endfunction
+"
+"call s:set_quickrun({
+"            \ "perl": {
+"            \   "hook/time/enable": 1,
+"            \ }})
+"call s:set_quickrun({
+"            \ "perl/test": {
+"            \   "exec": "%c %o %s:p",
+"            \   "command": "prove",
+"            \   "cmdopt": "-vlr",
+"            \   "hook/shebang/enable": 0,
+"            \ }})
+"call s:set_quickrun({
+"            \ "markdown": {
+"            \   "outputter": "browser",
+"            \ }})
+"call s:set_quickrun({
+"            \ "html": {
+"            \   "exec": "%c %s:p",
+"            \   "command": "safari",
+"            \ }})
+"nnoremap <leader>rp :QuickRun perl/test<cr>
 " }}}
 
 " loadafterft {{{
-let g:execcmd_after_ftplugin = {
-            \ '_': [
-            \   'setlocal fo-=t fo-=r fo-=o',
-            \ ]}
+"let g:execcmd_after_ftplugin = {
+"            \ '_': [
+"            \   'setlocal fo-=t fo-=r fo-=o',
+"            \ ]}
 " }}}
 
+" vim-lsp {{{
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" }}}
 
 " open-browser {{{
 let g:netrw_nogx = 1
@@ -176,15 +148,26 @@ vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " airline {{{
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline_detect_modified = 1
-let g:airline_detect_paste = 1
-let g:airline_powerline_font = 0
+"let g:airline#extensions#branch#enabled = 0
+"let g:airline#extensions#readonly#enabled = 0
+"let g:airline#extensions#syntastic#enabled = 1
+"let g:airline#extensions#whitespace#enabled = 1
+"let g:airline_detect_modified = 1
+"let g:airline_detect_paste = 1
+"let g:airline_powerline_font = 0
 let g:airline_theme = 'powerlineish'
 " }}}
 
+" ctrlp.vim {{{
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_extensions = [ 'tabs' ]
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+" }}}
 
 set secure
 
+" vim:nofen:fdl=0:ts=2:sw=2:sts=2
