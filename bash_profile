@@ -56,12 +56,9 @@ export GOPATH=`go env GOPATH`
 export PATH=$PATH:$GOPATH/bin
 # }}}
 
-# llvm {{{
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-# }}}
-
 # rust {{{
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 # }}}
 
+export PATH="/usr/local/sbin:$PATH"

@@ -22,9 +22,6 @@ alias realpath='readlink -f'
 alias extip='/usr/bin/curl ifconfig.me'
 alias vimprofile='vim --cmd "profile start vimprofile" --cmd "profile file */plugin/*.vim" --cmd "profile file .vimrc" -c quit'
 alias updatemod='cpan-outdated | cpanm'
-alias p="perl"
-alias p6="perl6"
-alias pd="perldoc"
 alias v="vim"
 alias btcargo="RUST_BACKTRACE=1 cargo run"
 # }}}

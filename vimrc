@@ -61,7 +61,7 @@ set hidden
 "set imdisable
 set ignorecase
 set modeline
-set directory-=$HOME/.vim/swap
+set directory=$HOME/.vim/swap
 "set showcmd
 "set showmatch
 "set pumheight=15
@@ -72,7 +72,6 @@ set cmdheight=3
 "set ttyfast
 "set termwinsize=15x0
 set number
-"let mapleader = "\<Space>"
 " }}}
 
 
@@ -90,13 +89,8 @@ hi PmenuThumb ctermfg=lightgray
 " autocmd {{{
 augroup MyAutoCmd
     autocmd!
-
     au FileType * setlocal fo-=t fo-=r fo-=o
-    au FileType help  nnoremap <buffer> q :q<cr>
-    au FileType man   nnoremap <buffer> q :q<cr>
-
-    runtime macros/matchit.vim
-    
+		packadd! matchit
 augroup END
 " }}}
 
@@ -160,9 +154,10 @@ let g:airline_theme = 'powerlineish'
 
 " ctrlp.vim {{{
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_use_caching = 0
 let g:ctrlp_extensions = [ 'tabs' ]
 if executable('rg')
-  set grepprg=rg\ --color=never
+  set grepprg=rg\ --vimgrep
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
