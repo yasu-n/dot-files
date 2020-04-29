@@ -35,45 +35,27 @@ filetype plugin indent on
 syntax enable
 
 " settings {{{
-"set fileformat=unix
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
-"scriptencoding utf-8
 set encoding=utf-8
 set termencoding=utf-8
-"set fileencoding=utf-8
-"set smarttab
-"set ambiwidth=double
-"set tabstop=2
-"set shiftwidth=2
-"set softtabstop=0
-"set expandtab
-"set shortmess+=l
 set incsearch
 set splitright
-"set noequalalways
-set completeopt=menu,preview
-"set switchbuf=useopen
-set wildmode=longest,full
-"set diffopt+=vertical
+set completeopt=menuone,preview
+"set wildmode=longest,full
 set matchpairs+=<:>
 set hidden
-"set imdisable
 set ignorecase
 set modeline
 set directory=$HOME/.vim/swap
-"set showcmd
-"set showmatch
-"set pumheight=15
-"set previewheight=5
-"set nobackup
 set laststatus=2
 set cmdheight=3
-"set ttyfast
-"set termwinsize=15x0
 set number
 " }}}
 
+" key mapping {{{
+nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
+" }}}
 
 " hilight {{{
 hi LineNr ctermfg=darkgray
@@ -84,7 +66,7 @@ hi Pmenu ctermfg=white ctermbg=darkgray
 hi PmenuSel ctermfg=white ctermbg=blue
 hi PmenuSbar ctermfg=lightgray
 hi PmenuThumb ctermfg=lightgray
-" }}}
+"" }}}
 
 " autocmd {{{
 augroup MyAutoCmd
@@ -94,45 +76,9 @@ augroup MyAutoCmd
 augroup END
 " }}}
 
-" quickrun {{{
-"let g:quickrun_config = {}
-"function! s:set_quickrun(dict)
-"  call extend(g:quickrun_config, a:dict)
-"endfunction
-"
-"call s:set_quickrun({
-"            \ "perl": {
-"            \   "hook/time/enable": 1,
-"            \ }})
-"call s:set_quickrun({
-"            \ "perl/test": {
-"            \   "exec": "%c %o %s:p",
-"            \   "command": "prove",
-"            \   "cmdopt": "-vlr",
-"            \   "hook/shebang/enable": 0,
-"            \ }})
-"call s:set_quickrun({
-"            \ "markdown": {
-"            \   "outputter": "browser",
-"            \ }})
-"call s:set_quickrun({
-"            \ "html": {
-"            \   "exec": "%c %s:p",
-"            \   "command": "safari",
-"            \ }})
-"nnoremap <leader>rp :QuickRun perl/test<cr>
-" }}}
-
-" loadafterft {{{
-"let g:execcmd_after_ftplugin = {
-"            \ '_': [
-"            \   'setlocal fo-=t fo-=r fo-=o',
-"            \ ]}
-" }}}
-
 " vim-lsp {{{
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
+"let g:lsp_log_verbose = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
 " }}}
 
 " open-browser {{{
@@ -142,20 +88,12 @@ vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " airline {{{
-"let g:airline#extensions#branch#enabled = 0
-"let g:airline#extensions#readonly#enabled = 0
-"let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#whitespace#enabled = 1
-"let g:airline_detect_modified = 1
-"let g:airline_detect_paste = 1
-"let g:airline_powerline_font = 0
 let g:airline_theme = 'powerlineish'
 " }}}
 
 " ctrlp.vim {{{
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_extensions = [ 'tabs' ]
+"let g:ctrlp_extensions = [ 'tabs' ]
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
