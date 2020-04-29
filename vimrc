@@ -72,7 +72,7 @@ hi PmenuThumb ctermfg=lightgray
 augroup MyAutoCmd
     autocmd!
     au FileType * setlocal fo-=t fo-=r fo-=o
-		packadd! matchit
+    packadd! matchit
 augroup END
 " }}}
 
