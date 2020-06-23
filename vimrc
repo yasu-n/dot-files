@@ -58,21 +58,23 @@ nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
 " }}}
 
 " hilight {{{
+set background=dark
+" hi Normal ctermfg=white
 hi LineNr ctermfg=darkgray
 hi comment ctermfg=darkgray
 hi Search ctermfg=black ctermbg=white term=underline
 hi TabLineFill gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Pmenu ctermfg=white ctermbg=darkgray
 hi PmenuSel ctermfg=white ctermbg=blue
-hi PmenuSbar ctermfg=lightgray
-hi PmenuThumb ctermfg=lightgray
+hi PmenuSbar ctermfg=darkgray
+hi PmenuThumb ctermfg=darkgray
 "" }}}
 
 " autocmd {{{
 augroup MyAutoCmd
-    autocmd!
-    au FileType * setlocal fo-=t fo-=r fo-=o
-    packadd! matchit
+  autocmd!
+  au FileType * setlocal fo-=t fo-=r fo-=o
+  packadd! matchit
 augroup END
 " }}}
 
@@ -80,6 +82,10 @@ augroup END
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 " }}}
+
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_winsize=20
 
 " open-browser {{{
 let g:netrw_nogx = 1

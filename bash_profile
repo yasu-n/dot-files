@@ -33,6 +33,7 @@ export PATH="$HOME/.nodebrew/current/bin:$PATH"
 export PATH="$HOME/.vimenv/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/usr/local/opt/riscv-gnu-toolchain/bin"
+export PATH="/usr/local/sbin:$PATH"
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
@@ -41,6 +42,26 @@ eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 eval "$(vimenv init -)"
 
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+#export PATH="/usr/local/opt/llvm/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl, -rpath, /usr/local/opt/llvm/lib"
+#export CPPFLAGS="-I/usr/local/opt/llvm/include -I/usr/local/opt/llvm/include/c++/v1/"
+
+export PATH="/usr/local/opt/binutils/bin:$PATH"
+
+
+if typeset -A &>/dev/null; then
+  typeset -A _paths
+  typeset _results
+  while read -r _p; do
+    if [[ -n ${_p} ]] && (( ${_paths["${_p}"]:-1} )); then
+      _paths["${_p}"]=0
+      _results=${_results}:${_p}
+    fi
+    done <<<"${PATH//:/$'\n'}"
+    PATH=${_results/:/}
+    unset -v _p _paths _results
+else
+  typeset _p=$(awk 'BEGIN{RS=":";ORS=":"} !x[$0]++' <<<"${PATH}:")
+  PATH=${_p%:*:}
+  unset -v _p
+fi
