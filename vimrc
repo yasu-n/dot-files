@@ -42,7 +42,7 @@ set termencoding=utf-8
 set incsearch
 set splitright
 set completeopt=menuone,preview
-"set wildmode=longest,full
+set wildmode=longest,full
 set matchpairs+=<:>
 set hidden
 set ignorecase

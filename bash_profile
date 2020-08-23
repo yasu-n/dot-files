@@ -35,7 +35,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/usr/local/opt/riscv-gnu-toolchain/bin"
 export PATH="/usr/local/sbin:$PATH"
 
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+#export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
 eval "$(plenv init -)"
 eval "$(pyenv init -)"
