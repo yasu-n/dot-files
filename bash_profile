@@ -19,9 +19,9 @@ export HISTSIZE='1500'
 export EDITOR='vim'
 export LSCOLORS='gxfxcxdxbxegedabagacad'
 export EXA_COLORS="da=1;36"
-export LESS='-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+#export LESS='-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESS='-iRMXS'
 export LESSCHARSET=utf-8
-export HOMEBRERW_NO_ANALYTICS=1
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH="$PATH:$HOME/bin"
@@ -29,26 +29,23 @@ export PATH="$PATH:$HOME/vim/bin"
 export PATH="$HOME/.plenv/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
 export PATH="$HOME/.vimenv/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:/usr/local/opt/riscv-gnu-toolchain/bin"
 export PATH="/usr/local/sbin:$PATH"
-
-#export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-#export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+export PATH="/usr/local/bin:$PATH"
 
 eval "$(plenv init -)"
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 eval "$(vimenv init -)"
 
-#export PATH="/usr/local/opt/llvm/bin:$PATH"
-#export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl, -rpath, /usr/local/opt/llvm/lib"
-#export CPPFLAGS="-I/usr/local/opt/llvm/include -I/usr/local/opt/llvm/include/c++/v1/"
+if type gh > /dev/null 2>&1; then
+  eval "$(gh completion -s bash)"
+fi
 
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if typeset -A &>/dev/null; then
   typeset -A _paths

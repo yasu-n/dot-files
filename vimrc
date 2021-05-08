@@ -59,7 +59,7 @@ nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
 
 " hilight {{{
 set background=dark
-" hi Normal ctermfg=white
+hi Normal ctermfg=white
 hi LineNr ctermfg=darkgray
 hi comment ctermfg=darkgray
 hi Search ctermfg=black ctermbg=white term=underline
@@ -78,11 +78,6 @@ augroup MyAutoCmd
 augroup END
 " }}}
 
-" vim-lsp {{{
-"let g:lsp_log_verbose = 1
-"let g:lsp_log_file = expand('~/vim-lsp.log')
-" }}}
-
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_winsize=20
@@ -95,17 +90,19 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 " airline {{{
 let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
 " }}}
 
 " ctrlp.vim {{{
 let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_extensions = [ 'tabs' ]
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
 " }}}
+
+let g:ctrlp_extensions = ['tabs']
 
 set secure
 
