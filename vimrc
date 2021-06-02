@@ -59,15 +59,21 @@ nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
 
 " hilight {{{
 set background=dark
-hi Normal ctermfg=white
-hi LineNr ctermfg=darkgray
-hi comment ctermfg=darkgray
-hi Search ctermfg=black ctermbg=white term=underline
-hi TabLineFill gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
-hi Pmenu ctermfg=white ctermbg=darkgray
-hi PmenuSel ctermfg=white ctermbg=blue
-hi PmenuSbar ctermfg=darkgray
-hi PmenuThumb ctermfg=darkgray
+hi normal ctermfg=white
+hi linenr ctermfg=darkgray
+hi comment ctermfg=250
+hi visual ctermbg=240
+hi search ctermfg=black ctermbg=white term=underline
+hi tablinefill gui=none ctermfg=none ctermbg=none cterm=none
+hi pmenu ctermfg=white ctermbg=darkgray
+hi pmenusel ctermfg=white ctermbg=blue
+hi pmenusbar ctermfg=darkgray
+hi pmenuthumb ctermfg=darkgray
+
+hi DiffAdd ctermfg=white ctermbg=171
+hi DiffDelete ctermfg=white ctermbg=71
+hi DiffChange ctermfg=white ctermbg=41
+hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
 "" }}}
 
 " autocmd {{{

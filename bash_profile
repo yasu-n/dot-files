@@ -19,29 +19,33 @@ export HISTSIZE='1500'
 export EDITOR='vim'
 export LSCOLORS='gxfxcxdxbxegedabagacad'
 export EXA_COLORS="da=1;36"
-#export LESS='-X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
 export LESS='-iRMXS'
 export LESSCHARSET=utf-8
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/vim/bin"
-export PATH="$HOME/.plenv/bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.vimenv/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+#export PATH="$HOME/.plenv/bin:$PATH"
+#export PATH="$HOME/.rbenv/bin:$PATH"
 
-eval "$(plenv init -)"
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
+eval "$(pyenv init --path)"
 eval "$(vimenv init -)"
+#eval "$(rbenv init -)"
+#eval "$(plenv init -)"
 
+# gh command (github command)
 if type gh > /dev/null 2>&1; then
   eval "$(gh completion -s bash)"
 fi
+
+# rust
+. "$HOME/.cargo/env"
+# bash completions
+# rustup completions bash >> ~/.local/share/bash-completion/completions/rustup
+# rustup completions bash cargo >> ~/.local/share/bash-completion/completions/cargo
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
