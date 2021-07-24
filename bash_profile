@@ -28,6 +28,8 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.vimenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/x-tools/riscv64-unknown-elf/bin:$PATH"
+
 #export PATH="$HOME/.plenv/bin:$PATH"
 #export PATH="$HOME/.rbenv/bin:$PATH"
 
@@ -43,6 +45,7 @@ fi
 
 # rust
 . "$HOME/.cargo/env"
+export PATH="$(rustc --print sysroot)/lib/rustlib/x86_64-unknown-linux-gnu/bin:$PATH"
 # bash completions
 # rustup completions bash >> ~/.local/share/bash-completion/completions/rustup
 # rustup completions bash cargo >> ~/.local/share/bash-completion/completions/cargo

@@ -47,7 +47,6 @@ set matchpairs+=<:>
 set hidden
 set ignorecase
 set modeline
-set directory=$HOME/.vim/swap
 set laststatus=2
 set cmdheight=3
 set number
@@ -83,10 +82,6 @@ augroup MyAutoCmd
   packadd! matchit
 augroup END
 " }}}
-
-let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_winsize=20
 
 " open-browser {{{
 let g:netrw_nogx = 1
