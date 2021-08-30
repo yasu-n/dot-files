@@ -1,0 +1,33 @@
+! "Enabled modi" Set from: Default
+rofi.modi: window,run,ssh
+! "Set the modi to combine in combi mode" Set from: Default
+rofi.combi-modi: drun
+! "Font to use" Set from: Default
+rofi.font: Hack 12
+! "Window width" Set from: Default
+rofi.width: 50
+! "Padding" Set from: Default
+!rofi.padding: 80
+! "Number of lines" Set from: Default
+rofi.lines: 8
+! "Always show number of lines" Set from: Default
+rofi.fixed-num-lines: true
+! "Hide scroll-bar *DEPRECATED*" Set from: Default
+rofi.hide-scrollbar: true
+! "Enable sidebar-mode" Set from: Default
+rofi.sidebar-mode: false
+! "Quit rofi" Set from: Default
+rofi.kb-cancel: Escape,Control+g,Control+bracketleft
+! "Switch to the next mode." Set from: Default
+rofi.kb-mode-next: Shift+Right,Control+Tab
+! "Switch to the previous mode." Set from: Default
+rofi.kb-mode-previous: Shift+Left,Control+ISO_Left_Tab
+! "Color scheme for normal row" Set from: Default
+rofi.color-normal: argb:00000000, argb:cc458588, argb:00000000, argb:cc076678, argb:cc83a598
+! "Color scheme for urgent row" Set from: Default
+rofi.color-urgent: argb:00000000, argb:cc689d6a, argb:00000000, argb:cc427b58, argb:cc8ec07c
+! "Color scheme for active row" Set from: Default
+rofi.color-active: argb:00000000, argb:ccb16286, argb:00000000, argb:cc8f3f71, argb:ccd3869b
+! "Color scheme window" Set from: Default
+rofi.color-window: argb:cc040404, argb:cc040404, argb:cc458588
+

@@ -50,6 +50,7 @@ set modeline
 set laststatus=2
 set cmdheight=3
 set number
+set cursorline
 " }}}
 
 " key mapping {{{
@@ -73,6 +74,9 @@ hi DiffAdd ctermfg=white ctermbg=171
 hi DiffDelete ctermfg=white ctermbg=71
 hi DiffChange ctermfg=white ctermbg=41
 hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
+
+hi CursorLineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE
+hi clear CursorLine
 "" }}}
 
 " autocmd {{{
