@@ -28,15 +28,9 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.vimenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/x-tools/riscv64-unknown-elf/bin:$PATH"
-
-#export PATH="$HOME/.plenv/bin:$PATH"
-#export PATH="$HOME/.rbenv/bin:$PATH"
 
 eval "$(pyenv init --path)"
 eval "$(vimenv init -)"
-#eval "$(rbenv init -)"
-#eval "$(plenv init -)"
 
 # gh command (github command)
 if type gh > /dev/null 2>&1; then
