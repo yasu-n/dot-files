@@ -75,11 +75,11 @@ modules-right = dunst pulseaudio battery powermenu
 
 tray-position = right
 tray-padding = 1
-tray-transparent = true
+; tray-transparent = true
 
 enable-ipc = true
 override-redirect = false
-wm-restack = i3
+;wm-restack = i3
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -255,7 +255,7 @@ menu-0-1-exec = shutdown -h now
 [module/dunst]
 type = custom/ipc
 initial = 1
-format-foreground = ${colors.yellow}
+format-foreground = ${colors.foreground}
 
 hook-0 = echo "%{A1:notify-send "DUNST_COMMAND_PAUSE" && polybar-msg hook dunst 2:}%{A}" &
 hook-1 = echo "%{A1:notify-send "DUNST_COMMAND_RESUME" && polybar-msg hook dunst 1:}%{A}" &
