@@ -1,0 +1,200 @@
+" ~/.vimrc
+"
+" text object {{{
+" d: delete
+" y: yank
+" c: cut and insert mode
+"
+" old text          command    new text
+" "Hello |world"    di"        ""
+" 'Hello |world'    di'        ''
+" (123+4|56)/2      di(        ()/2
+" {12i+|4i56}/2     di{        {}/2
+" <div>You</div>    dit        <div></div>
+" Hello wor|ld      diw        Hello
+" }}}
+"
+" folding {{{
+" command
+" zo   : Open one fold under the cursor
+" zO   : Open all folds under the cursor recursively
+" zc   : Close one fold under the cursor
+" zC   : Close all folds under the cursor recursively
+" zR   : Open all folds
+" zM   : Close all folds
+" }}}
+"
+" terminal {{{
+" ex) termkey: Ctrl + w
+" termkey Ctrl+w : change window (Ctrl+w is j,h,k.l)
+" termkey :      : transfer ex-mode
+" termkey :quit  : close window (Can't execute while running job)
+" termkey Ctrl+c : stop job
+" }}}
+filetype plugin indent on
+syntax enable
+
+" settings {{{
+set fileformats=unix,dos,mac
+set backspace=indent,eol,start
+set encoding=utf-8
+set termencoding=utf-8
+set incsearch
+set splitright
+set completeopt=menuone,preview
+set wildmode=longest,full
+set matchpairs+=<:>
+set hidden
+set ignorecase
+set modeline
+set laststatus=2
+set cmdheight=3
+set number
+set cursorline
+" }}}
+
+" key mapping {{{
+nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
+" }}}
+
+" hilight {{{
+set background=dark
+hi normal ctermfg=white
+hi linenr ctermfg=darkgray
+hi comment ctermfg=250
+hi visual ctermbg=240
+hi search ctermfg=black ctermbg=white term=underline
+hi tablinefill gui=none ctermfg=none ctermbg=none cterm=none
+hi pmenu ctermfg=white ctermbg=darkgray
+hi pmenusel ctermfg=white ctermbg=blue
+hi pmenusbar ctermfg=darkgray
+hi pmenuthumb ctermfg=darkgray
+
+hi DiffAdd ctermfg=white ctermbg=171
+hi DiffDelete ctermfg=white ctermbg=71
+hi DiffChange ctermfg=white ctermbg=41
+hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
+
+hi CursorLineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE
+hi clear CursorLine
+"" }}}
+
+" autocmd {{{
+augroup MyAutoCmd
+  autocmd!
+  au FileType * setlocal fo-=t fo-=r fo-=o
+  packadd! matchit
+augroup END
+" }}}
+
+" open-browser {{{
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+" }}}
+
+" airline {{{
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+" }}}
+
+" ctrlp.vim {{{
+let g:ctrlp_working_path_mode = 'ra'
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+" }}}
+
+let g:ctrlp_extensions = ['tabs']
+
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+" Configure LSP through rust-tools.nvim plugin.
+" rust-tools will configure and enable certain LSP features for us.
+" See https://github.com/simrat39/rust-tools.nvim#configuration
+lua <<EOF
+local nvim_lsp = require'lspconfig'
+
+local opts = {
+    tools = { -- rust-tools options
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
+    },
+}
+
+require('rust-tools').setup(opts)
+EOF
+
+" Setup Completion
+" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+lua <<EOF
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
+EOF
+
+set secure
+
+" vim:nofen:fdl=0:ts=2:sw=2:sts=2
