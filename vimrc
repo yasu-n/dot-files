@@ -51,6 +51,8 @@ set laststatus=2
 set cmdheight=3
 set number
 set cursorline
+set cursorlineopt=number
+" set ambiwidth=single
 " }}}
 
 " key mapping {{{
@@ -60,7 +62,7 @@ nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
 " hilight {{{
 set background=dark
 hi normal ctermfg=white
-hi linenr ctermfg=darkgray
+hi LineNr ctermfg=darkgray
 hi comment ctermfg=250
 hi visual ctermbg=240
 hi search ctermfg=black ctermbg=white term=underline
@@ -76,13 +78,13 @@ hi DiffChange ctermfg=white ctermbg=41
 hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
 
 hi CursorLineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE
-hi clear CursorLine
 "" }}}
 
 " autocmd {{{
 augroup MyAutoCmd
   autocmd!
   au FileType * setlocal fo-=t fo-=r fo-=o
+	au FileType lsp-quickpick set number
   packadd! matchit
 augroup END
 " }}}
