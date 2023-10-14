@@ -1,8 +1,0 @@
-# Settings for aliases for perl
-# 
-# reference: Perl Hacks
-# Data: 16 May 2010
-alias realias='$EDITOR ~/.aliases; source ~/.aliases'
-alias reperl='perl -de0'
-alias testcover='cover -delete; ./Build testcover; cover'
-alias pmver="perl -le '\$m = shift; eval qq(require \$m) or die qq(module \"\$m\" is not installed\\n); print \$m->VERSION'"

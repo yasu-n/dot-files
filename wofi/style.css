@@ -1,0 +1,56 @@
+* {
+    font: "SauceCodePro Nerd Font";
+    font-size: 16;
+    color: #ffffff;
+}
+
+window {
+    margin: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#input {
+    margin: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin 5px;
+    border: none;
+    color: #ffffff;
+}
+
+#entry {
+    border: none;
+    outline: none;
+}
+
+#entry:focus {
+    border: none;
+}
+
+#entry:selected {
+    background-color: rgba(55, 59, 65, 0.95);
+    border-radius: 5px;
+    border: 0px;
+}

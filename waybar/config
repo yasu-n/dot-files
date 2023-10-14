@@ -1,0 +1,49 @@
+{
+    "layer": "top",
+    //"output": ["eDP-1", "HDMI-A-1"],
+    "ipc": true,
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["clock", "pulseaudio", "battery", "tray"],
+    "sway/workspaces": {
+        "all-outputs": false,
+        "curent-only": true,
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "sway/mode": {
+        "max-length": 50
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%a %d %b %Y %H:%M}"
+    },
+    "battery": {
+        "format": "{icon}  {capacity}%",
+        "format-charging": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "format": "vol: {volume}%",
+        "format-bluetooth": "vol: {volume}% ",
+        "format-muted": "mute {icon}",
+        "format-icons": {
+            "mute": "",
+            "default": ["", "", ""]
+        },
+        //"format-icons": {
+        //    "headphone": "",
+        //    "hands-free": "",
+        //    "headset": "",
+        //    "phone": "",
+        //    "portable": "",
+        //    "car": "",
+        //    "default": ["", "", ""]
+        //},
+        //"on-click": "pavucontrol"
+    },
+}
+

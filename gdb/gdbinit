@@ -1,0 +1,5 @@
+set debuginfod enabled off
+source ~/.config/gdb/pwndbg/gdbinit.py
+set history save off
+set logging enabled off
+set disassembly-flavor att
