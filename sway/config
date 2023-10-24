@@ -46,14 +46,8 @@ output "*" bg ~/.user-dirs/Pictures/wallpaper/blue-girl.jpg fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-#output HDMI-A-1 {
-#    res 1920x1080
-#}
-#
-#output eDP-1 {
-#    res 1920x1080
-#}
-
+output eDP-1 resolution 1920x1080 scale 1
+output HDMI-A-1 resolution 1920x1080 scale 1
 
 ### Idle configuration
 #
@@ -65,7 +59,6 @@ output "*" bg ~/.user-dirs/Pictures/wallpaper/blue-girl.jpg fill
 #          before-sleep 'swaylock -f -c 000000'
 exec swayidle -w \
   timeout 600 'swaylock -f' \
-  timeout 1200 'systemctl suspend' \
   before-sleep 'swaylock -f'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -77,6 +70,11 @@ exec swayidle -w \
 exec nm-applet --indicator
 
 # Desktop Notification is mako
+# mako will run automatically when a notification is emitted. This happens
+# via D-Bus activation, so you don't really need to explicitly start it up (tis also
+# allows delaying its startup time and spped up system startup).
+# If you have several notification daemons installed though, you might want to
+# explicitly start this one. Some ways of achieving this is:
 exec mako
 
 # Input manager engine

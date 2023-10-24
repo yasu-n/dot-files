@@ -4,7 +4,9 @@
     "ipc": true,
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["clock", "pulseaudio", "battery", "tray"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/wireplumber", "battery", "tray"],
+    //"modules-right": ["custom/wireplumber", "wireplumber", "battery", "tray"],
     "sway/workspaces": {
         "all-outputs": false,
         "curent-only": true,
@@ -24,16 +26,42 @@
     "battery": {
         "format": "{icon}  {capacity}%",
         "format-charging": "{icon}  {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": true
     },
-    "pulseaudio": {
-        "format": "vol: {volume}%",
-        "format-bluetooth": "vol: {volume}% ",
-        "format-muted": "mute {icon}",
-        "format-icons": {
-            "mute": "",
-            "default": ["", "", ""]
-        },
+    "wireplumber": {
+        "format": "vol: {volume}% {icon} ",
+        "format-icons": ["", "", ""],
+        "tooltip-format": "{node_name}",
+        "format-muted": "vol: mute  ",
+        "on-click": "~/.config/waybar/mute.fish"
+    },
+    "custom/wireplumber": {
+        "exec": "~/.config/waybar/volume.fish",
+        "exec-if": "exit 0",
+        "exec-on-event": true,
+        "return-type": "json",
+        //"interval": "once",
+        "interval": 5,
+        //"signal": 1,
+        "format": "vol: {} ",
+        "on-click": "~/.config/waybar/mute.fish",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
+        "tooltip": true,
+        //"escape": true
+
+        //"format": "vol: {volume}% ",
+        //"tooltip-format": "{node_name}",
+        //"format-muted": "mute ",
+        //"restart-interval": 0,
+        // "format-bluetooth": "vol: {volume}% ",
+        //"format-muted": "mute {icon}",
+        //"format-icons": ["", "", ""],
+        //"format-icons": {
+        //    "mute": "",
+        //    "default": ["", "", ""]
+        //},
         //"format-icons": {
         //    "headphone": "",
         //    "hands-free": "",
@@ -44,6 +72,6 @@
         //    "default": ["", "", ""]
         //},
         //"on-click": "pavucontrol"
-    },
+    }
 }
 

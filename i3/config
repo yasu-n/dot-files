@@ -141,6 +141,9 @@ mode "resize" {
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch
 
+# start dunst
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
 # i3blocks
 #set $background #222222
 #set $background-alt #444444
