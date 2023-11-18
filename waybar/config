@@ -5,8 +5,8 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/wireplumber", "battery", "tray"],
-    //"modules-right": ["custom/wireplumber", "wireplumber", "battery", "tray"],
+    "modules-right": ["custom/wireplumber", "custom/battery", "tray"],
+    //"modules-right": ["wireplumber", "battery", "tray"],
     "sway/workspaces": {
         "all-outputs": false,
         "curent-only": true,
@@ -23,18 +23,14 @@
     "clock": {
         "format": "{:%a %d %b %Y %H:%M}"
     },
-    "battery": {
-        "format": "{icon}  {capacity}%",
-        "format-charging": "{icon}  {capacity}%",
-        "format-icons": ["", "", "", "", ""],
+    "custom/battery": {
+        "exec": "~/.config/waybar/battery.fish",
+        "exec-if": "exit 0",
+        "exec-on-event": true,
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
         "tooltip": true
-    },
-    "wireplumber": {
-        "format": "vol: {volume}% {icon} ",
-        "format-icons": ["", "", ""],
-        "tooltip-format": "{node_name}",
-        "format-muted": "vol: mute  ",
-        "on-click": "~/.config/waybar/mute.fish"
     },
     "custom/wireplumber": {
         "exec": "~/.config/waybar/volume.fish",
@@ -50,28 +46,6 @@
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-",
         "tooltip": true,
         //"escape": true
-
-        //"format": "vol: {volume}% ",
-        //"tooltip-format": "{node_name}",
-        //"format-muted": "mute ",
-        //"restart-interval": 0,
-        // "format-bluetooth": "vol: {volume}% ",
-        //"format-muted": "mute {icon}",
-        //"format-icons": ["", "", ""],
-        //"format-icons": {
-        //    "mute": "",
-        //    "default": ["", "", ""]
-        //},
-        //"format-icons": {
-        //    "headphone": "",
-        //    "hands-free": "",
-        //    "headset": "",
-        //    "phone": "",
-        //    "portable": "",
-        //    "car": "",
-        //    "default": ["", "", ""]
-        //},
-        //"on-click": "pavucontrol"
     }
 }
 

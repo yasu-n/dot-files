@@ -1,6 +1,16 @@
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup {
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust" },
+    ensure_installed = {
+        "c",
+        "fish",
+        "lua",
+        "rust",
+        "toml",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "zig"
+    },
 
     sync_install = false,
 
@@ -8,7 +18,6 @@ require("nvim-treesitter.configs").setup {
 
     highlight = {
         enable = true,
-        disable = { "bash", },
     },
     indent = {
         enable = true,

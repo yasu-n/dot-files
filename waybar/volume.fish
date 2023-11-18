@@ -8,6 +8,16 @@ if test "$mute_status" != ""
     set volume 0
 end
 
+# output volume icon
+set icon = ""
+if test $volume -eq 0
+    set icon ""
+else if test $volume -gt 80
+    set icon ""
+else if test $volume -gt 30
+    set icon ""
+end
+
 # set bluetooth device id
 set device_id (wpctl inspect @DEFAULT_AUDIO_SINK@ | \
     grep device.id | \
@@ -31,20 +41,11 @@ if test "$device_bus" != ""
     set icon_bt ""
 end
 
-# battery charge
-set battery_device (upower -e | grep battery_BAT0)
-set battery_state (upower -i $battery_device | grep state | grep charging)
-set icon_charge ""
-if test battery_state != ""
-    set icon_charge ""
-end
-
-# output volume text
 set text ""
 if test $volume -eq 0
-    set text "mute  $icon_charge "
+    set text "mute $icon "
 else
-    set text "$volume% $icon_charge $icon_bt"
+    set text "$volume% $icon $icon_bt"
 end
 
 echo '{"text": "'$text'", "tooltip": "'$device_name'"}'
