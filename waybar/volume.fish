@@ -9,13 +9,13 @@ if test "$mute_status" != ""
 end
 
 # output volume icon
-set icon = ""
-if test $volume -eq 0
-    set icon ""
-else if test $volume -gt 80
+set icon ""
+if test $volume -gt 80
     set icon ""
-else if test $volume -gt 30
+else if test $volume -gt 1
     set icon ""
+else
+    set icon ""
 end
 
 # set bluetooth device id

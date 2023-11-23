@@ -1,9 +1,11 @@
 -- nvim-treesitter
+-- markdown is used rust-analyzer
 require("nvim-treesitter.configs").setup {
     ensure_installed = {
         "c",
         "fish",
         "lua",
+        "markdown",
         "rust",
         "toml",
         "typescript",

@@ -42,6 +42,7 @@ require("nvim-surround").setup({
 
 -- load lua 
 require("config.autocmd")
+require("config.skk")
 require("config.telescope")
 require("config.tree-sitter")
 require("config.nvim-tree")

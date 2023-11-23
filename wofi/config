@@ -1,6 +1,6 @@
 mode=drun
 prompt=
-term=alacritty
+term=wezterm
 width=40%
 hide_scroll=true
 insensitive=true
