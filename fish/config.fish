@@ -40,7 +40,7 @@ end
 set fish_greeting
 
 # lldb
-set -gx PYTHONPATH /usr/lib/llvm-16/lib/python3.11/site-packages $PYTHONPATH
+set -gx PYTHONPATH /usr/lib/llvm-16/lib/python3.11/site-packages
 
 # rust
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src

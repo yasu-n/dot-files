@@ -52,34 +52,33 @@ set laststatus=2
 set cmdheight=3
 set number
 set cursorline
-set cursorlineopt=number
-"set tgc
+set termguicolors
 " set ambiwidth=single
 " }}}
-
 " key mapping {{{
 nnoremap <space>3 :<C-u>setlocal relativenumber!<CR>
 " }}}
 
 " hilight {{{
 set background=dark
-hi normal ctermfg=white
-hi LineNr ctermfg=darkgray
-hi comment ctermfg=250
-hi visual ctermbg=240
-hi search ctermfg=black ctermbg=white term=underline
-hi tablinefill gui=none ctermfg=none ctermbg=none cterm=none
-hi pmenu ctermfg=white ctermbg=darkgray
-hi pmenusel ctermfg=white ctermbg=blue
-hi pmenusbar ctermfg=darkgray
-hi pmenuthumb ctermfg=darkgray
-
-hi DiffAdd ctermfg=white ctermbg=171
-hi DiffDelete ctermfg=white ctermbg=71
-hi DiffChange ctermfg=white ctermbg=41
-hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
-
-hi CursorLineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE
+colorscheme onedark
+"hi normal ctermfg=white
+"hi LineNr ctermfg=darkgray
+"hi comment ctermfg=250
+"hi visual ctermbg=240
+"hi search ctermfg=black ctermbg=white term=underline
+"hi tablinefill gui=none ctermfg=none ctermbg=none cterm=none
+"hi pmenu ctermfg=white ctermbg=darkgray
+"hi pmenusel ctermfg=white ctermbg=blue
+"hi pmenusbar ctermfg=darkgray
+"hi pmenuthumb ctermfg=darkgray
+"
+"hi DiffAdd ctermfg=white ctermbg=171
+"hi DiffDelete ctermfg=white ctermbg=71
+"hi DiffChange ctermfg=white ctermbg=41
+"hi DiffText cterm=bold ctermfg=white ctermbg=darkgray
+"
+"hi CursorLineNr term=bold cterm=NONE ctermfg=white ctermbg=NONE
 "" }}}
 
 " autocmd {{{
@@ -98,7 +97,8 @@ vmap gx <Plug>(openbrowser-smart-search)
 " }}}
 
 " airline {{{
-let g:airline_theme = 'powerlineish'
+"let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'deus'
 let g:airline_powerline_fonts = 1
 " }}}
 

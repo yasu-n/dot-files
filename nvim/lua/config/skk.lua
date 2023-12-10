@@ -2,7 +2,8 @@
 
 -- configure
 vim.fn['skkeleton#config']({
-    globalJisyo="~/.skk/SKK-JISYO.L"
+    globalJisyo="~/.skk/SKK-JISYO.L",
+    userJisyo="~/.skk/skkeleton"
 })
 
 -- keymap
